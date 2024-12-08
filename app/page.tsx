@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Twitter, Linkedin, Mail, Home, User, Briefcase, FileText, Phone, Layout } from 'lucide-react'
+import { Github, Twitter, Linkedin, Mail, Home, Briefcase, FileText, Phone, Layout } from 'lucide-react'
 import { HeroSection } from "@/components/sections/hero-section"
 import { PostsSection } from "@/components/sections/posts-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
@@ -22,12 +22,6 @@ export default function Portfolio() {
             label="Home" 
             icon={Home} 
             isActive={activeSection === "home"} 
-          />
-          <NavItem 
-            href="#about" 
-            label="About" 
-            icon={User} 
-            isActive={activeSection === "about"} 
           />
           <NavItem 
             href="#services" 
