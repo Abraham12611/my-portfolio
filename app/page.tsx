@@ -2,6 +2,7 @@ import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
 import { HeroSection } from "@/components/sections/hero-section"
 import { PostsSection } from "@/components/sections/posts-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
+import { ServicesSection } from "@/components/sections/services-section"
 import { NavItem } from "@/components/ui/nav-item"
 import { SocialIcon } from "@/components/ui/social-icon"
 
@@ -13,8 +14,9 @@ export default function Portfolio() {
         <div className="space-y-8">
           <NavItem href="#home" label="Home" isActive />
           <NavItem href="#about" label="About" />
-          <NavItem href="#posts" label="Posts" />
+          <NavItem href="#services" label="Services" />
           <NavItem href="#work" label="Work" />
+          <NavItem href="#posts" label="Posts" />
           <NavItem href="#contact" label="Contact" />
         </div>
       </nav>
@@ -28,6 +30,7 @@ export default function Portfolio() {
       </div>
 
       <HeroSection />
+      <ServicesSection />
       <ProjectsSection />
       <PostsSection />
     </div>
