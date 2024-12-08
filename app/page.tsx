@@ -1,101 +1,159 @@
-import Image from "next/image";
+import Image from "next/image"
+import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import Link from "next/link"
+import { BlogPostCard } from "@/components/blog-post-card"
 
-export default function Home() {
+export default function Portfolio() {
+  // Mock data for blog posts
+  const blogPosts = [
+    {
+      title: "Getting Started with Next.js",
+      excerpt: "Learn how to build modern web applications with Next.js",
+      date: "2023-05-15",
+      readTime: "5 min read",
+      slug: "getting-started-with-nextjs"
+    },
+    {
+      title: "Mastering TypeScript",
+      excerpt: "Dive deep into TypeScript and improve your code quality",
+      date: "2023-06-01",
+      readTime: "8 min read",
+      slug: "mastering-typescript"
+    },
+    {
+      title: "The Power of Tailwind CSS",
+      excerpt: "Discover how Tailwind CSS can streamline your styling workflow",
+      date: "2023-06-15",
+      readTime: "6 min read",
+      slug: "power-of-tailwind-css"
+    },
+    // Add more blog posts as needed
+  ]
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-[#06141B]">
+      {/* Navigation */}
+      <nav className="fixed right-0 top-0 h-screen w-24 flex flex-col items-center justify-center bg-[#11212D]/50 backdrop-blur-sm z-50">
+        <div className="space-y-8">
+          <NavItem href="#home" label="Home" isActive />
+          <NavItem href="#about" label="About" />
+          <NavItem href="#posts" label="Posts" />
+          <NavItem href="#work" label="Work" />
+          <NavItem href="#contact" label="Contact" />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </nav>
+
+      {/* Social Icons */}
+      <div className="fixed top-8 right-32 flex gap-6 z-50">
+        <SocialIcon href="https://github.com" icon={Github} />
+        <SocialIcon href="https://twitter.com" icon={Twitter} />
+        <SocialIcon href="https://linkedin.com" icon={Linkedin} />
+        <SocialIcon href="mailto:contact@example.com" icon={Mail} />
+      </div>
+
+      {/* Hero Section */}
+      <section id="home" className="relative h-screen overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-[#06141B]">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06141B] to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06141B] to-transparent opacity-70" />
+          {/* Accent Light Effect */}
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#253745] opacity-20 blur-3xl" />
+        </div>
+
+        {/* Content */}
+        <div className="relative h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+            <div className="max-w-2xl space-y-6">
+              <span className="text-[#4A5C6A] text-sm tracking-wider uppercase">
+                Software Developer | Technical writer
+              </span>
+              <h1 className="text-[#CCD0CF] text-6xl font-bold tracking-tight">
+                Hello, I'm Abraham<br />
+                Dahunsi
+              </h1>
+              <p className="text-[#9BA8AB] text-xl max-w-xl">
+                Creative Developer & Digital Artist crafting immersive web experiences
+              </p>
+              <div className="pt-4 flex gap-4">
+                <Link
+                  href="#work"
+                  className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
+                >
+                  View My Work
+                </Link>
+                <Link
+                  href="#contact"
+                  className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
+                >
+                  Contact Me
+                </Link>
+              </div>
+            </div>
+
+            {/* Previous Partnerships */}
+            <div className="max-w-xs">
+              <h3 className="text-[#CCD0CF] text-2xl font-semibold mb-6">Previous Partnerships</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <CompanyBadge name="Vultr" />
+                <CompanyBadge name="FreeCodeCamp" />
+                <CompanyBadge name="SitePoint" />
+                <CompanyBadge name="DigitalOcean" />
+                <CompanyBadge name="GitHub" />
+                <CompanyBadge name="Netlify" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Posts Section */}
+      <section id="posts" className="py-20 bg-[#06141B]">
+        <div className="max-w-7xl mx-auto px-8">
+          <h2 className="text-4xl font-bold text-[#CCD0CF] mb-12">Latest Posts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
+              <BlogPostCard key={index} {...post} />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
+
+function NavItem({ href, label, isActive = false }: { href: string; label: string; isActive?: boolean }) {
+  return (
+    <Link
+      href={href}
+      className={`block text-sm font-medium ${
+        isActive ? "text-[#CCD0CF]" : "text-[#4A5C6A]"
+      } hover:text-[#9BA8AB] transition-colors writing-mode-vertical transform rotate-180`}
+      style={{ writingMode: "vertical-rl" }}
+    >
+      {label}
+    </Link>
+  )
+}
+
+function SocialIcon({ href, icon: Icon }: { href: string; icon: any }) {
+  return (
+    <Link
+      href={href}
+      className="text-[#4A5C6A] hover:text-[#9BA8AB] transition-colors"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon className="w-6 h-6" />
+    </Link>
+  )
+}
+
+function CompanyBadge({ name }: { name: string }) {
+  return (
+    <div className="bg-[#11212D] p-4 rounded-lg flex items-center justify-center">
+      <span className="text-[#9BA8AB] font-medium">{name}</span>
+    </div>
+  )
+}
+
