@@ -95,12 +95,36 @@ export default function Portfolio() {
             <div className="max-w-xs">
               <h3 className="text-[#CCD0CF] text-2xl font-semibold mb-6">Previous Partnerships</h3>
               <div className="grid grid-cols-2 gap-4">
-                <CompanyBadge name="Vultr" />
-                <CompanyBadge name="FreeCodeCamp" />
-                <CompanyBadge name="SitePoint" />
-                <CompanyBadge name="DigitalOcean" />
-                <CompanyBadge name="GitHub" />
-                <CompanyBadge name="Netlify" />
+                <CompanyLogo 
+                  name="Vultr" 
+                  logo="/logos/vultr_logo.svg"
+                  website="https://vultr.com"
+                />
+                <CompanyLogo 
+                  name="FreeCodeCamp" 
+                  logo="/logos/FreeCodeCamp_logo.svg"
+                  website="https://freecodecamp.org"
+                />
+                <CompanyLogo 
+                  name="SitePoint" 
+                  logo="/logos/sitepoint_logo.svg"
+                  website="https://sitepoint.com"
+                />
+                <CompanyLogo 
+                  name="DigitalOcean" 
+                  logo="/logos/digitalocean_logo.svg"
+                  website="https://digitalocean.com"
+                />
+                <CompanyLogo 
+                  name="GitHub" 
+                  logo="/logos/github_logo.svg"
+                  website="https://github.com"
+                />
+                <CompanyLogo 
+                  name="Netlify" 
+                  logo="/logos/netlify_logo.svg"
+                  website="https://netlify.com"
+                />
               </div>
             </div>
           </div>
@@ -149,11 +173,26 @@ function SocialIcon({ href, icon: Icon }: { href: string; icon: any }) {
   )
 }
 
-function CompanyBadge({ name }: { name: string }) {
+function CompanyLogo({ name, logo, website }: { name: string; logo: string; website: string }) {
   return (
-    <div className="bg-[#11212D] p-4 rounded-lg flex items-center justify-center">
-      <span className="text-[#9BA8AB] font-medium">{name}</span>
-    </div>
+    <Link 
+      href={website}
+      target="_blank"
+      rel="noopener noreferrer" 
+      className="bg-[#11212D] p-4 rounded-lg flex items-center justify-center group hover:bg-[#1A2F3D] transition-all duration-300"
+    >
+      <div className="relative w-full h-8 flex items-center justify-center">
+        <Image
+          src={logo}
+          alt={`${name} logo`}
+          fill
+          className="object-contain filter brightness-75 group-hover:brightness-100 transition-all duration-300"
+          style={{ 
+            filter: 'invert(70%) sepia(13%) saturate(123%) hue-rotate(169deg) brightness(92%) contrast(87%)' 
+          }}
+        />
+      </div>
+    </Link>
   )
 }
 
