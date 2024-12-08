@@ -1,6 +1,7 @@
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
 import { HeroSection } from "@/components/sections/hero-section"
 import { PostsSection } from "@/components/sections/posts-section"
+import { ProjectsSection } from "@/components/sections/projects-section"
 import { NavItem } from "@/components/ui/nav-item"
 import { SocialIcon } from "@/components/ui/social-icon"
 
@@ -27,6 +28,7 @@ export default function Portfolio() {
       </div>
 
       <HeroSection />
+      <ProjectsSection />
       <PostsSection />
     </div>
   )
