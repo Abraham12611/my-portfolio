@@ -15,7 +15,8 @@ export function HeroSection() {
 
       {/* Content */}
       <div className="relative h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-8 w-full flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-8 w-full flex items-center">
+          {/* Hero Content */}
           <div className="max-w-2xl space-y-6">
             <span className="text-[#4A5C6A] text-sm tracking-wider uppercase">
               Software Developer | Technical writer
@@ -43,7 +44,10 @@ export function HeroSection() {
             </div>
           </div>
 
-          <PartnershipsSection />
+          {/* Partnerships Section - Adjusted positioning */}
+          <div className="flex-1 flex justify-center -ml-20">
+            <PartnershipsSection />
+          </div>
         </div>
       </div>
     </section>
