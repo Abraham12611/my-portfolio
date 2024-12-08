@@ -37,11 +37,7 @@ export function ServicesSection() {
           </div>
 
           {/* Calendar Integration */}
-          <div className="bg-[#11212D] rounded-xl p-6 h-[600px]">
-            <div className="mb-6">
-              <h3 className="text-[#CCD0CF] text-2xl font-semibold mb-2">Schedule a Consultation</h3>
-              <p className="text-[#9BA8AB]">Book a 30-minute call to discuss your technical writing needs</p>
-            </div>
+          <div className="bg-[#11212D] rounded-xl p-8 flex items-center justify-center">
             <CalendarEmbed />
           </div>
         </div>

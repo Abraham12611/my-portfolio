@@ -1,101 +1,80 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import dynamic from "next/dynamic"
+import { useEffect } from "react"
+import { Button } from "./button" // Assuming you have a Button component
+import { Calendar } from "lucide-react"
 
-// Dynamically import Cal with loading state
-const Cal = dynamic(
-  () => import("@calcom/embed-react").then((mod) => mod.default),
-  { 
-    ssr: false,
-    loading: () => <LoadingCalendar />
+declare global {
+  interface Window {
+    Cal?: any
   }
-)
-
-function LoadingCalendar() {
-  return (
-    <div className="h-[500px] flex items-center justify-center bg-[#11212D] rounded-lg">
-      <div className="text-[#9BA8AB]">Loading calendar...</div>
-    </div>
-  )
 }
 
 export function CalendarEmbed() {
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-
   useEffect(() => {
-    let mounted = true
-
-    const initializeCal = async () => {
-      try {
-        // Import getCalApi dynamically
-        const { getCalApi } = await import("@calcom/embed-react")
-        
-        // Only proceed if component is still mounted
-        if (!mounted) return
-
-        const cal = await getCalApi()
-        
-        // Only proceed if component is still mounted
-        if (!mounted) return
-
-        cal("ui", {
-          theme: "dark",
-          styles: {
-            branding: {
-              brandColor: "#253745"
-            }
-          },
-          hideEventTypeDetails: false,
-        })
-        
-        if (mounted) {
-          setIsLoaded(true)
-        }
-      } catch (err) {
-        if (mounted) {
-          console.error("Failed to initialize calendar:", err)
-          setError("Failed to load calendar. Please try again later.")
-        }
+    // Initialize Cal
+    (function (C: any, A: string, L: string) {
+      let p = function (a: any, ar: any) {
+        a.q.push(ar)
       }
-    }
+      let d = C.document
+      C.Cal =
+        C.Cal ||
+        function () {
+          let cal = C.Cal
+          let ar = arguments
+          if (!cal.loaded) {
+            cal.ns = {}
+            cal.q = cal.q || []
+            d.head.appendChild(d.createElement("script")).src = A
+            cal.loaded = true
+          }
+          if (ar[0] === L) {
+            const api = function () {
+              p(api, arguments)
+            }
+            const namespace = ar[1]
+            api.q = api.q || []
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api
+              p(cal.ns[namespace], ar)
+              p(cal, ["initNamespace", namespace])
+            } else p(cal, ar)
+            return
+          }
+          p(cal, ar)
+        }
+    })(window, "https://app.cal.com/embed/embed.js", "init")
 
-    initializeCal()
-
-    // Cleanup function
-    return () => {
-      mounted = false
+    // Initialize your calendar
+    if (window.Cal) {
+      window.Cal("init", "30min", { origin: "https://cal.com" })
+      window.Cal.ns["30min"]("ui", {
+        theme: "dark",
+        styles: {
+          branding: {
+            brandColor: "#253745"
+          }
+        },
+        hideEventTypeDetails: false,
+      })
     }
   }, [])
 
-  if (error) {
-    return (
-      <div className="h-[500px] flex items-center justify-center bg-[#11212D] rounded-lg">
-        <div className="text-[#9BA8AB]">{error}</div>
-      </div>
-    )
-  }
-
-  if (!isLoaded) {
-    return <LoadingCalendar />
-  }
-
   return (
-    <div className="h-[500px] overflow-hidden rounded-lg">
-      <Cal
-        namespace="30min"
-        calLink="abdahunsi/30min"
-        style={{
-          width: "100%",
-          height: "100%",
-          overflow: "scroll"
-        }}
-        config={{
-          layout: "month_view",
-          theme: "dark"
-        }}
-      />
+    <div className="flex flex-col items-center gap-4">
+      <Button
+        data-cal-link="abdahunsi/30min"
+        data-cal-namespace="30min"
+        data-cal-config='{"layout":"month_view"}'
+        className="bg-[#253745] text-[#CCD0CF] px-8 py-4 rounded-lg hover:bg-[#1A2F3D] transition-all duration-300 flex items-center gap-2"
+      >
+        <Calendar className="w-5 h-5" />
+        Schedule a Consultation
+      </Button>
+      <p className="text-[#9BA8AB] text-sm">
+        30 min call to discuss your technical writing needs
+      </p>
     </div>
   )
 } 
