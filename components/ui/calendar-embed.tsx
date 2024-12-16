@@ -3,13 +3,15 @@
 import { useEffect } from "react"
 import { Button } from "./button"
 import { Calendar } from "lucide-react"
-import Cal, { getCalApi } from "@calcom/embed-react"
+import Cal from "@calcom/embed-react"
 
 export function CalendarEmbed() {
   useEffect(() => {
-    (async function () {
-      const cal = await getCalApi()
-      cal.ns["30min"]?.inline?.({
+    (async function initCal() {
+      const Cal = (await import("@calcom/embed-react")).default
+      const cal = await Cal.getApi()
+      // Initialize Cal inline embed
+      cal?.inline({
         elementOrSelector: "#cal-booking",
         calLink: "abdahunsi/30min",
         config: {
