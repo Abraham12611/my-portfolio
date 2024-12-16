@@ -2,8 +2,24 @@
 
 import Link from "next/link"
 import { PartnershipsSection } from "./partnerships-section"
+import { useRouter } from "next/navigation"
 
 export function HeroSection() {
+  const router = useRouter()
+
+  const handleWorkClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const workSection = document.getElementById('work')
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const handleBookingClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    window.open('https://cal.com/abdahunsi/15min', '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <section id="home" className="relative h-screen overflow-hidden">
       {/* Background gradient */}
@@ -30,24 +46,18 @@ export function HeroSection() {
               Creative Developer & Digital Artist crafting immersive web experiences
             </p>
             <div className="pt-4 flex gap-4">
-              <Link
-                href="#work"
+              <button
+                onClick={handleWorkClick}
                 className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
-                }}
               >
                 View My Work
-              </Link>
-              <Link
-                href="https://cal.com/abdahunsi/15min"
-                target="_blank"
-                rel="noopener noreferrer"
+              </button>
+              <button
+                onClick={handleBookingClick}
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
                 Book 15 Min Call
-              </Link>
+              </button>
             </div>
           </div>
 
