@@ -29,7 +29,7 @@ export function HeroSection() {
             </p>
             <div className="pt-4 flex gap-4">
               <Link
-                href="#work"
+                href="#projects"
                 className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
               >
                 View My Work
@@ -38,7 +38,7 @@ export function HeroSection() {
                 href="#contact"
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
-                Contact Me
+                Book 15 Min Call
               </Link>
             </div>
           </div>
