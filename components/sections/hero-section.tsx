@@ -1,12 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import { PartnershipsSection } from "./partnerships-section"
-import { useRouter } from "next/navigation"
 
 export function HeroSection() {
-  const router = useRouter()
-
   const handleWorkClick = (e: React.MouseEvent) => {
     e.preventDefault()
     const workSection = document.getElementById('work')
@@ -17,7 +13,7 @@ export function HeroSection() {
 
   const handleBookingClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    window.open('https://cal.com/abdahunsi/15min', '_blank', 'noopener,noreferrer')
+    window.location.href = 'https://cal.com/abdahunsi/15min'
   }
 
   return (
@@ -46,18 +42,21 @@ export function HeroSection() {
               Creative Developer & Digital Artist crafting immersive web experiences
             </p>
             <div className="pt-4 flex gap-4">
-              <button
+              <a
+                href="#work"
                 onClick={handleWorkClick}
                 className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
               >
                 View My Work
-              </button>
-              <button
-                onClick={handleBookingClick}
+              </a>
+              <a
+                href="https://cal.com/abdahunsi/15min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
                 Book 15 Min Call
-              </button>
+              </a>
             </div>
           </div>
 
