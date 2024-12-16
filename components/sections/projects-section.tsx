@@ -1,18 +1,26 @@
 import { ProjectCard } from "../ui/project-card"
 
+interface Project {
+  title: string;
+  description: string;
+  status: "Published" | "In Progress";
+  technologies: string[];
+  link: string;
+}
+
 export function ProjectsSection() {
-  const publishedProjects = [
+  const publishedProjects: Project[] = [
     {
       title: "E-commerce Platform",
       description: "A full-featured e-commerce platform built with Next.js and Stripe",
-      status: "Published",
+      status: "Published" as const,
       technologies: ["Next.js", "React", "Stripe", "Tailwind CSS"],
       link: "https://example.com/ecommerce"
     },
     {
       title: "AI-powered Chat Application",
       description: "Real-time chat app with AI-powered responses using OpenAI",
-      status: "Published",
+      status: "Published" as const,
       technologies: ["React", "Node.js", "Socket.io", "OpenAI API"],
       link: "https://example.com/ai-chat"
     }
@@ -22,14 +30,14 @@ export function ProjectsSection() {
     {
       title: "Blockchain Explorer",
       description: "A web application to explore and analyze blockchain transactions",
-      status: "In Progress",
+      status: "In Progress" as const,
       technologies: ["Vue.js", "Express", "Web3.js", "MongoDB"],
       link: "https://example.com/blockchain"
     },
     {
       title: "Fitness Tracking Mobile App",
       description: "Cross-platform mobile app for tracking workouts and nutrition",
-      status: "In Progress",
+      status: "In Progress" as const,
       technologies: ["React Native", "Redux", "Firebase", "HealthKit"],
       link: "https://example.com/fitness"
     }
