@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { PartnershipsSection } from "./partnerships-section"
 
@@ -29,13 +31,19 @@ export function HeroSection() {
             </p>
             <div className="pt-4 flex gap-4">
               <Link
-                href="#projects"
+                href="#work"
                 className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+                }}
               >
                 View My Work
               </Link>
               <Link
-                href="#contact"
+                href="https://cal.com/abdahunsi/15min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
                 Book 15 Min Call
@@ -43,7 +51,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Partnerships Section - Adjusted positioning */}
+          {/* Partnerships Section */}
           <div className="flex-1 flex justify-center -ml-20">
             <PartnershipsSection />
           </div>
