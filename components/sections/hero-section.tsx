@@ -3,17 +3,19 @@
 import { PartnershipsSection } from "./partnerships-section"
 
 export function HeroSection() {
-  const handleWorkClick = (e: React.MouseEvent) => {
+  const handleWorkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
+    e.stopPropagation()
     const workSection = document.getElementById('work')
     if (workSection) {
       workSection.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
-  const handleBookingClick = (e: React.MouseEvent) => {
+  const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    window.location.href = 'https://cal.com/abdahunsi/15min'
+    e.stopPropagation()
+    window.open('https://cal.com/abdahunsi/15min', '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -51,8 +53,7 @@ export function HeroSection() {
               </a>
               <a
                 href="https://cal.com/abdahunsi/15min"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={handleBookingClick}
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
                 Book 15 Min Call

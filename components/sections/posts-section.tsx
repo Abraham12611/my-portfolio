@@ -22,7 +22,7 @@ export function PostsSection() {
       excerpt: "Discover how Tailwind CSS can streamline your styling workflow",
       date: "2023-06-15",
       readTime: "6 min read",
-      slug: "power-of-tailwind-css"
+      slug: "p"
     },
   ]
 
