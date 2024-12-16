@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { CompanyLogo } from "../ui/company-logo"
 import { PartnershipsSection } from "./partnerships-section"
 
 export function HeroSection() {
@@ -22,7 +21,7 @@ export function HeroSection() {
               Software Developer | Technical writer
             </span>
             <h1 className="text-[#CCD0CF] text-6xl font-bold tracking-tight">
-              Hello, I'm Abraham<br />
+              Hello, I&apos;m Abraham<br />
               Dahunsi
             </h1>
             <p className="text-[#9BA8AB] text-xl max-w-xl">
