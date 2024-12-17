@@ -8,6 +8,7 @@ import { ServicesSection } from "@/components/sections/services-section"
 import { NavItem } from "@/components/ui/nav-item"
 import { SocialIcon } from "@/components/ui/social-icon"
 import { useActiveSection } from "@/hooks/use-active-section"
+import { ContactSection } from "@/components/sections/contact-section"
 
 export default function Portfolio() {
   const activeSection = useActiveSection()
@@ -62,6 +63,7 @@ export default function Portfolio() {
       <ServicesSection />
       <ProjectsSection />
       <PostsSection />
+      <ContactSection />
     </div>
   )
 }

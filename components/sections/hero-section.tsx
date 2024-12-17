@@ -1,8 +1,23 @@
-import Link from "next/link"
-import { CompanyLogo } from "../ui/company-logo"
+"use client"
+
 import { PartnershipsSection } from "./partnerships-section"
 
 export function HeroSection() {
+  const handleWorkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const workSection = document.getElementById('work')
+    if (workSection) {
+      workSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const handleBookingClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    window.open('https://cal.com/abdahunsi/15min', '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <section id="home" className="relative h-screen overflow-hidden">
       {/* Background gradient */}
@@ -22,29 +37,31 @@ export function HeroSection() {
               Software Developer | Technical writer
             </span>
             <h1 className="text-[#CCD0CF] text-6xl font-bold tracking-tight">
-              Hello, I'm Abraham<br />
+              Hello, I&apos;m Abraham<br />
               Dahunsi
             </h1>
             <p className="text-[#9BA8AB] text-xl max-w-xl">
               Creative Developer & Digital Artist crafting immersive web experiences
             </p>
             <div className="pt-4 flex gap-4">
-              <Link
+              <a
                 href="#work"
+                onClick={handleWorkClick}
                 className="inline-block px-8 py-4 bg-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#4A5C6A] transition-colors"
               >
                 View My Work
-              </Link>
-              <Link
-                href="#contact"
+              </a>
+              <a
+                href="https://cal.com/abdahunsi/15min"
+                onClick={handleBookingClick}
                 className="inline-block px-8 py-4 border border-[#253745] text-[#CCD0CF] rounded-lg hover:bg-[#253745]/10 transition-colors"
               >
-                Contact Me
-              </Link>
+                Book 15 Min Call
+              </a>
             </div>
           </div>
 
-          {/* Partnerships Section - Adjusted positioning */}
+          {/* Partnerships Section */}
           <div className="flex-1 flex justify-center -ml-20">
             <PartnershipsSection />
           </div>

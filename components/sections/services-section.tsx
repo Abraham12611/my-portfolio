@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { FileText, Rocket, Users } from 'lucide-react'
 import { CalendarEmbed } from "../ui/calendar-embed"
 
@@ -51,7 +52,7 @@ function ServiceCard({
   title, 
   description 
 }: { 
-  icon: any
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   title: string
   description: string 
 }) {

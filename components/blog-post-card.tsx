@@ -11,7 +11,10 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ title, excerpt, date, readTime, slug }: BlogPostCardProps) {
   return (
-    <Card className="bg-[#11212D] border-[#253745] hover:border-[#4A5C6A] transition-colors">
+    <Link 
+      href={`/blog/${slug}`}
+      className="block bg-[#11212D] rounded-lg p-6 hover:bg-[#1A2F3D] transition-colors"
+    >
       <CardHeader>
         <CardTitle className="text-[#CCD0CF]">{title}</CardTitle>
       </CardHeader>
@@ -22,10 +25,8 @@ export function BlogPostCard({ title, excerpt, date, readTime, slug }: BlogPostC
         <span>{date}</span>
         <span>{readTime}</span>
       </CardFooter>
-      <Link href={`/blog/${slug}`} className="absolute inset-0">
-        <span className="sr-only">View {title}</span>
-      </Link>
-    </Card>
+      <span className="sr-only">View {title}</span>
+    </Link>
   )
 }
 
